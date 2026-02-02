@@ -1,20 +1,18 @@
-import { useTelegram } from '../../shared/hooks/useTelegram'
-
 export default function Home() {
-  const { user, tg } = useTelegram()
+  const w = window as any
 
-  console.log('TG:', tg)
-  console.log('USER:', user)
+  if (!w.Telegram) {
+    return <div>NO TELEGRAM OBJECT</div>
+  }
 
-  if (!user) {
-    return <div>Not in Telegram</div>
+  if (!w.Telegram.WebApp) {
+    return <div>NO WEBAPP</div>
   }
 
   return (
     <div>
-      <div>ID: {user.id}</div>
-      <div>Username: {user.username}</div>
-      <div>Name: {user.first_name}</div>
+      <div>WEBAPP OK</div>
+      <pre>{JSON.stringify(w.Telegram.WebApp.initDataUnsafe, null, 2)}</pre>
     </div>
   )
 }
