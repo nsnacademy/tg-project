@@ -1,7 +1,10 @@
 import { useTelegram } from '../../shared/hooks/useTelegram'
 
 export default function Home() {
-  const { user } = useTelegram()
+  const { user, tg } = useTelegram()
+
+  console.log('TG:', tg)
+  console.log('USER:', user)
 
   if (!user) {
     return <div>Not in Telegram</div>
